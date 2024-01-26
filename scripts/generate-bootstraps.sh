@@ -56,7 +56,7 @@ build_bootstrap () {
 	DEBIAN_VER="buster"
  
 	echo "Finding Debian ($DEBIAN_VER) for $LINUX_CONTAINERS_ARCH"
-  	R=$(curl -s 'https://images.linuxcontainers.org/meta/1.0/index-user' | grep 'debian;$DEBIAN_VER;$LINUX_CONTAINERS_ARCH;default;')
+  	R=$(curl -s 'https://images.linuxcontainers.org/meta/1.0/index-user' | grep "debian;$DEBIAN_VER;$LINUX_CONTAINERS_ARCH;default;")
    	P="${R##*;}"
 
     	echo "Downloading Debian ($DEBIAN_VER)"
