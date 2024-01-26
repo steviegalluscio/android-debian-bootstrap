@@ -1,6 +1,6 @@
-# android-linux-bootstrap
+# android-debian-bootstrap
 
-Minimal (<3MB) alpine-linux bootstrap archive for Android API 16+. Used in feelfreelinux/octo4a.
+WORK IN PROGRESS: Debian Linux bootstrap archive for Android API 16+. bootstrap archive for Android API 16+.
 
 ## Setup
 
