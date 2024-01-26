@@ -2,7 +2,7 @@
 
 chmod -R 777 ../
 chmod -R +rx ../
-# unpack alpine bootstrap
+# unpack debian bootstrap
 mkdir bootstrap
 cd bootstrap
 cat ../rootfs.tar.xz | ../root/bin/minitar
