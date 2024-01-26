@@ -31,21 +31,13 @@ build_bootstrap () {
 		PROOT_ARCH="aarch64"
 		ANDROID_ARCH="arm64-v8a"
 		MUSL_ARCH="aarch64-linux-musl"
-		;;
-	armhf)
-		PROOT_ARCH="armv7a"
-		ANDROID_ARCH="armeabi-v7a"
-		MUSL_ARCH="arm-linux-musleabihf"
+  		LINUX_CONTAINERS_ARCH="arm64"
 		;;
 	x86_64)
 		PROOT_ARCH="x86_64"
 		ANDROID_ARCH="x86_64"
 		MUSL_ARCH="x86_64-linux-musl"
-		;;
-	x86)
-		PROOT_ARCH="i686"
-		ANDROID_ARCH="x86"
-		MUSL_ARCH="i686-linux-musl"
+  		LINUX_CONTAINERS_ARCH="amd64"
 		;;
 	*)
 		echo "Invalid arch"
@@ -61,10 +53,15 @@ build_bootstrap () {
 	fi
 
 
-	ALPINE_RELEASE="3.17"
-	ALPINE_VER="$ALPINE_RELEASE.1"
-	echo "Downloading Alpine $ALPINE_RELEASE ($ALPINE_VER)"
-	curl --fail -o rootfs.tar.xz -L "http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_RELEASE/releases/$1/alpine-minirootfs-$ALPINE_VER-$1.tar.gz"
+	DEBIAN_VER="buster"
+ 
+	echo "Finding Debian ($DEBIAN_VER) for $LINUX_CONTAINERS_ARCH"
+  	R=$(curl -s 'https://images.linuxcontainers.org/meta/1.0/index-user' | grep 'debian;$DEBIAN_VER;$LINUX_CONTAINERS_ARCH;default;')
+   	P="${R##*;}"
+
+    	echo "Downloading Debian ($DEBIAN_VER)"
+     	curl --fail -o rootfs.tar.xz -L "https://images.linuxcontainers.org/$P/rootfs.tar.xz"
+ 
 	cp ../../run-bootstrap.sh .
 	cp ../../install-bootstrap.sh .
 	cp ../../fake_proc_stat .
@@ -77,6 +74,6 @@ build_bootstrap () {
 }
 
 build_bootstrap aarch64
-build_bootstrap armhf
+#build_bootstrap armhf
 build_bootstrap x86_64
-build_bootstrap x86
+#build_bootstrap x86
