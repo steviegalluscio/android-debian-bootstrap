@@ -1,6 +1,6 @@
 # android-debian-bootstrap
 
-WORK IN PROGRESS: Debian Linux bootstrap archive for Android API 16+. bootstrap archive for Android API 16+.
+Debian Linux bootstrap archive for Android API 16+. bootstrap archive for Android API 16+.
 
 ## Setup
 
