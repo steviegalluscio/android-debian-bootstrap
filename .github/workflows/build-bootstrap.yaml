@@ -2,7 +2,7 @@ name: Build bootstrap
 on: [ push, workflow_dispatch ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Fix permissions
         run: sudo chown -R $USER:$USER /home/runner/work/android-debian-bootstrap
