@@ -15,4 +15,9 @@ nameserver 8.8.4.4" > bootstrap/etc/resolv.conf
 # make resolv.conf immutable
 chattr +i bootstrap/etc/resolv.conf
 
+# fix in-memory filesystem directories by creating /var/lock or /run/lock
+cat <<EOF > bootstrap/etc/profile.d/fix-env.sh
+[ -L '/var/lock' -a ! -e '/var/lock' ] && mkdir -p "\$(readlink -m '/var/lock')" || true
+EOF
+
 echo "bootstrap ready, run with run-bootstrap.sh"
